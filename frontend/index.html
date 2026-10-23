@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whisper Wall — Campus Confessions</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <span class="brand-stamp">Confidential</span>
+      <span class="brand-name">Whisper<em>Wall</em></span>
+    </div>
+    <nav class="tabs">
+      <button class="active" data-tab="feed">Feed</button>
+      <button data-tab="trending">Trending</button>
+      <button data-tab="communities">Communities</button>
+      <button data-tab="polls">Polls</button>
+    </nav>
+    <button class="new-btn" id="openCompose">+ New Confession</button>
+  </div>
+</header>
+
+<div class="layout">
+
+  <!-- LEFT SIDEBAR (feed filters only) -->
+  <aside class="side" id="feedSidebar">
+    <div class="side-block">
+      <h3>Categories</h3>
+      <div id="categoryChips"></div>
+    </div>
+    <div class="side-block">
+      <h3>Tags</h3>
+      <div id="tagChips"></div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT AREA -->
+  <main>
+
+    <!-- FEED TAB -->
+    <section class="tab-panel active" id="tab-feed">
+      <div class="feed-toolbar">
+        <button class="chip active" data-sort="new">Newest</button>
+        <button class="chip" data-sort="top">Most reacted</button>
+        <input class="search" id="searchBox" placeholder="search confessions…">
+      </div>
+      <div id="feedList"></div>
+    </section>
+
+    <!-- TRENDING TAB -->
+    <section class="tab-panel" id="tab-trending">
+      <h2 class="panel-title">Trending Now</h2>
+      <div id="trendingFullList"></div>
+    </section>
+
+    <!-- COMMUNITIES TAB -->
+    <section class="tab-panel" id="tab-communities">
+      <h2 class="panel-title">Communities</h2>
+
+      <div class="form-card">
+        <h3>Create a Community</h3>
+        <form id="communityForm">
+          <input type="text" id="communityName" placeholder="Community name" required>
+          <button type="submit">Create Community</button>
+        </form>
+        <p class="error-msg" id="communityError"></p>
+      </div>
+
+      <div id="communityList" class="card-list"></div>
+    </section>
+
+    <!-- POLLS TAB -->
+    <section class="tab-panel" id="tab-polls">
+      <h2 class="panel-title">Polls</h2>
+
+      <div class="form-card">
+        <h3>Create a Poll</h3>
+        <form id="pollForm">
+          <input type="text" id="pollQuestion" placeholder="Poll question" required>
+          <div id="pollOptionsContainer">
+            <input type="text" class="poll-option-input" placeholder="Option 1" required>
+            <input type="text" class="poll-option-input" placeholder="Option 2" required>
+          </div>
+          <button type="button" id="addOptionBtn" class="secondary-btn">+ Add Option</button>
+          <button type="submit">Create Poll</button>
+        </form>
+        <p class="error-msg" id="pollError"></p>
+      </div>
+
+      <div id="pollFullList" class="card-list"></div>
+    </section>
+
+  </main>
+</div>
+
+<!-- COMPOSE MODAL -->
+<div class="overlay" id="composeOverlay">
+  <div class="modal">
+    <h2>File a Confession</h2>
+    <div class="sub">You'll post anonymously — no name, no trace. Only you can delete it later.</div>
+    <label>Category</label>
+    <select id="composeCategory">
+      <option>Academics</option>
+      <option>Relationships</option>
+      <option>Roommates</option>
+      <option>Campus Life</option>
+      <option>Rant</option>
+      <option>Wholesome</option>
+    </select>
+    <label>Your confession</label>
+    <textarea id="composeText" placeholder="Type what's on your mind…"></textarea>
+    <label>Tags (comma separated)</label>
+    <input type="text" id="composeTags" placeholder="e.g. finals, allnighter">
+    <div class="modal-actions">
+      <button class="btn-ghost" id="cancelCompose">Cancel</button>
+      <button class="btn-solid" id="submitCompose">Post anonymously</button>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE CONFIRM MODAL (shared: confessions, communities, polls) -->
+<div class="overlay" id="deleteOverlay">
+  <div class="modal">
+    <h2 id="deleteTitle">Delete this?</h2>
+    <div class="sub">This can't be undone. It will be removed for everyone.</div>
+    <div class="modal-actions">
+      <button class="btn-ghost" id="cancelDelete">Cancel</button>
+      <button class="btn-solid" id="confirmDelete">Delete</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

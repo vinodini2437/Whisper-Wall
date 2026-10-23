@@ -1,0 +1,6 @@
+node_modules/
+backend/whisperwall.db
+backend/whisperwall.db-shm
+backend/whisperwall.db-wal
+backend/.env
+.DS_Store
